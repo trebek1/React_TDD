@@ -61,3 +61,6 @@ describe("App", () => {
 // BDD given, when, then to get around test pollution 
 
 // group test together by type 
+
+// run coverage script with  npm run test -- --coverage 
+

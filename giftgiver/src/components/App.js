@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; 
 import { Button } from 'react-bootstrap'; 
-import Gift from './Gift'; 
+import Gift from './Gift';
+import { max_number } from '../helper'; 
 
 
 // Want App to have react methods for component delegated to App class
@@ -16,7 +17,7 @@ class App extends Component {
 		const { gifts } = this.state;
 		const ids = this.state.gifts.map(gift => gift.id);
 
-		const maxId = ids.length > 0 ? Math.max(...ids) : 0; 
+		const maxId = max_number(ids);
 
 		gifts.push({id: maxId + 1});
 		
