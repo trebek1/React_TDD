@@ -1,7 +1,9 @@
 import React from 'react'; 
 import { shallow } from 'enzyme'; 
 
-import Gift from './Gift'; 
+import Gift from './Gift';
+
+// Generally after saving file need to update snapshot  
 
 describe("Gift", () => {
 	const gift = shallow(<Gift />); 
@@ -15,11 +17,16 @@ describe("Gift", () => {
 	}); 
 
 	describe("when typing into the person input ", () => {
+		
+		const person = "Uncle"; 
+
 		beforeEach(() => {
-			gift.find('.input-person').simulate("change", {target: {value: "Uncle"}}); 
+			gift.find('.input-person').simulate("change", {target: {value: person}}); 
 		});
+
 		it("updates the person in `state` ", () => {
-			expect(gift.state().person).toEqual("Uncle"); 
+			expect(gift.state().person).toEqual(person); 
 		});
 	});
 });
+
