@@ -10,11 +10,12 @@ describe("App", () => {
 	const app = shallow(<App />);
 
 	it("renders correctly", () => {
+
 		// Snapshot keeps a history of each change to component that is made 
 		expect(app).toMatchSnapshot();
 	});
 
-	it("initializes the `state` with an empty list of gifts", ()=> {
+	it("initializes the `state` with an empty list of gifts", () => {
 		expect(app.state().gifts).toEqual([]); 
 	});
 
@@ -29,16 +30,19 @@ describe("App", () => {
 		}); 
 
 		it("adds a new `state`", () =>{
+
 			// find child nodes with jsx tags or className
 			expect(app.state().gifts).toEqual([{id}]); 
 		});
 
 		it("adds a new gift to the rendered list", () => {
+			
 			// test pollution
 			expect(app.find('.gift-list').children().length).toEqual(id);
 		});
 
 		it('creates a Gift component ', () => {
+			
 			// use toBe with true 
 			expect(app.find("Gift").exists()).toBe(true);
 		});
