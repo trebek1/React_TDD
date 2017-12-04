@@ -6,7 +6,8 @@ import { Wallet } from './Wallet';
 
 describe("Wallet", () =>{
 	const mockDeposit = jest.fn();
-	const props = {balance: 20, deposit: mockDeposit};
+	const mockWithdrawal = jest.fn();
+	const props = {balance: 20, deposit: mockDeposit, withdraw: mockWithdrawal};
 	const wallet = shallow(<Wallet {...props} />);
 
 	it("renders properly ", () =>{
@@ -39,6 +40,14 @@ describe("Wallet", () =>{
 
 			it("dispatches the `deposit()` it receives from props with the local balance ", () => {
 				expect(mockDeposit).toHaveBeenCalledWith(parseInt(userBalance, 10));
+			});
+		});
+		describe("user wants to make a withdrawal ", () => {
+			beforeEach(() => {
+				wallet.find('.btn-withdrawal').simulate("click"); 
+			});
+			it("dispatches the `withdraw()` it recieves from props with the local balance ", () => {
+				expect(mockWithdrawal).toHaveBeenCalledWith(parseInt(userBalance, 10)); 
 			});
 		});
 	});

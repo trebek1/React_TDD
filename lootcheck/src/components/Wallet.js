@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deposit } from '../actions/balance';
+import { deposit, withdraw } from '../actions/balance';
 
 export class Wallet extends Component {
 	constructor(){
@@ -16,6 +16,10 @@ export class Wallet extends Component {
 		this.props.deposit(this.state.balance);
 	}
 
+	withdraw = () => {
+		this.props.withdraw(this.state.balance); 
+	}
+
 	render(){
 		return (
 			<div>
@@ -23,10 +27,11 @@ export class Wallet extends Component {
 				<br/>
 				<input className="input-wallet" onChange={this.updateBalance} />
 				<button className="btn-deposit" onClick={this.deposit}>Deposit</button> 
+				<button className="btn-withdrawal" onClick={this.withdraw}>Withdraw</button> 
 			</div>
 		)
 	}
 }
 // field 1: what part of redux store to use (mapStateToProps)
 // field 2: action creators to use on component to send data to store 
-export default connect(	state => { return { balance: state}} ,{ deposit })(Wallet); 
+export default connect(	state => { return { balance: state}} ,{ deposit, withdraw })(Wallet); 
