@@ -34,4 +34,4 @@ export class Wallet extends Component {
 }
 // field 1: what part of redux store to use (mapStateToProps)
 // field 2: action creators to use on component to send data to store 
-export default connect(	state => { return { balance: state}} ,{ deposit, withdraw })(Wallet); 
+export default connect(	state => { return { balance: state.balance}} ,{ deposit, withdraw })(Wallet); 
