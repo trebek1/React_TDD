@@ -4,7 +4,7 @@ import { Loot } from './Loot';
 
 describe("Loot ", () => {
   const mockFetchBitcoin = jest.fn();
-  const props = {balance: 10, bitcoin: {}};
+  let props = {balance: 10, bitcoin: {}};
   let loot = shallow(<Loot {...props} />);
 
   it("renders properly ", () => {
@@ -19,8 +19,16 @@ describe("Loot ", () => {
 
     it('dispatches teh `fetchBitcoin` method it recieves from props ', () => {
       expect(mockFetchBitcoin).toHaveBeenCalled();
-    })
+    });
   });
-  // mount renders children and lifecycle methods 
-
+  
+  describe("when there are valid bitcoin props ", () =>{
+    beforeEach(() => {
+      props = {balance: 10, bitcoin: {bpi: {USD: {rate: "1,000"} } } };
+      loot = shallow(<Loot {...props} />);
+    });
+    it("displays the correct bitcoin value ", () => {
+      expect(loot.find('h3').text()).toEqual("Bitcoin Balance: 0.01");
+    });
+  });
 });
